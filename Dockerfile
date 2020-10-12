@@ -28,11 +28,3 @@ RUN echo "install.packages(c('countrycode', 'data.table', 'dplyr', 'devtools', '
     Rscript --vanilla /tmp/tmp_install.R && \
     rm /tmp/tmp_install.R
 
-# NOTE:
-# Unclear on licensing problems when including this font in a repo.
-# Since this should only be needed for the older tool.transitionmonitor.com
-# PDF generator, remove it for now.
-#
-# ADD ClearSans.tar.gz /usr/share/texlive/texmf-dist
-# RUN texhash
-
