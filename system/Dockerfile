@@ -19,6 +19,7 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
        libssl-dev \
        libpng-dev \
        libjpeg-dev \
+       libssh2-1-dev \
        pandoc \
        texlive \
        texlive-latex-extra && \
