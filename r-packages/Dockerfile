@@ -15,20 +15,25 @@ RUN echo 'options(repos = c(CRAN = "https://packagemanager.rstudio.com/all/__lin
                'data.table', \
                'devtools', \
                'dplyr', \
+               'forcats', \
                'fs', \
                'fst', \
                'ggplot2', \
                'glue', \
                'here', \
+               'highcharter', \
                'janitor', \
                'jsonlite', \
                'knitr', \
+               'magrittr', \
+               'plyr', \
                'purrr', \
                'readr', \
                'readxl', \
                'renv', \
                'reshape2', \
                'rlang', \
+               'rmarkdown', \
                'rstudioapi', \
                'scales', \
                'stringr', \
@@ -36,7 +41,9 @@ RUN echo 'options(repos = c(CRAN = "https://packagemanager.rstudio.com/all/__lin
                'tibble', \
                'tidyr', \
                'tidyselect', \
+               'tools', \
                'usethis', \
+               'utils', \
                'withr', \
                'writexl', \
                'zoo' \
