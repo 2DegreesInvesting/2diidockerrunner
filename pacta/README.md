@@ -25,6 +25,6 @@ Build this image from this directory:
 Run a container from anywhere:
 
 ```bash
-# Run a container from 2dii/pacta:0.0.1, and destroy it on exit (--rm)
+# Run a container from 2dii/pacta:latest and destroy it on exit (--rm)
 docker run --rm -ti 2dii/pacta:latest /bin/bash
 ```
