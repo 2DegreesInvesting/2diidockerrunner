@@ -1,14 +1,17 @@
-Build this image from the parent directory of PACTA_analysis. For example, 
-here is how I copy this Dockerfile, change directory, and build the image
--- all in one step:
+Build this image from this directory:
 
 ```bash
-cp ~/git/2diidockerrunner/pacta/Dockerfile ~/git && cd ~/git && docker build . --tag 2dii/pacta:0.0.0.9000
+# Build 2dii/pacta:0.0.1
+./build-tag 0.0.1
+
+# Build 2dii/pacta:latest (default)
+./build-tag
 ```
 
-And this is how I run a temporary container:
+Run a container from anywhere:
 
 ```bash
-git docker run --rm -ti 2dii/pacta:0.0.0.9000 /bin/bash
+# Run a container from the image 2dii/pacta:0.0.1, and destroy it on exit (--rm)
+docker run --rm -ti 2dii/pacta:latest /bin/bash
 ```
 
