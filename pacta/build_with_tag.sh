@@ -1,13 +1,29 @@
 #! /bin/bash
 
 # Examples:
+# # The tag is enforced
 # build_with_tag 0.0.0.999
+#
+# # Optionally give the names of the repos as trailing arguments
+# build_with_tag 0.0.0.999 PACTA_analysis StressTestingModelDev
+#
+# # With the help of pacta-find, you don't need to know the names
+# # of pacta siblings -- it's enough to know the path to the parent.
+# pacta_siblings="$(basename $(pacta-find ~/git))"
+# ./build_with_tag.sh 0.0.0.999 "$pacta_siblings"
+#
+# # You may want to cleanup, particularly if the process ends early.
+# git clean -dffx
 
-repos="PACTA_analysis create_interactive_report StressTestingModelDev pacta-data"
 user_results="user_results"
 url="git@github.com:2DegreesInvesting/"
-
 tag="$1"
+repos="${@:2}"
+if [ -z "$repos" ]
+then
+    repos="PACTA_analysis create_interactive_report StressTestingModelDev pacta-data"
+fi
+
 if [ -z "$tag" ]
 then
     echo "Please give a tag."
