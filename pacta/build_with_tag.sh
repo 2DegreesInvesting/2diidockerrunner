@@ -1,9 +1,9 @@
 #! /bin/bash
 
 tag="${1:-latest}"
-clones="${2:-PACTA_analysis create_interactive_report StressTestingModelDev pacta-data}"
 url="git@github.com:2DegreesInvesting/"
 
+clone_and_log () {
 for repo in ${clones}
 do
     remote="${url}${repo}.git"
@@ -25,6 +25,10 @@ do
     echo "$(git -C ${repo} log --pretty='%h %d <%an> (%cr)' | head -n 1)"
     echo "--"
 done
+}
+
+clones="${2:-PACTA_analysis create_interactive_report StressTestingModelDev pacta-data}"
+clone_and_log
 
 docker rmi --force $(docker images -q '2dii_pacta' | uniq)
 docker build --tag 2dii_pacta:"${tag}" --tag 2dii_pacta:latest .
@@ -36,9 +40,8 @@ done
 
 unzip pacta_web_template.zip
 
-git clone -b master "${url}"user_results.git --depth 1
-echo "user_results HEAD sha:"
-git -C user_results rev-parse HEAD
+clones="user_results"
+clone_and_log
 
 needless_files=".git .gitignore .DS_Store README.md user_results.Rproj"
 for file in ${needless_files}
