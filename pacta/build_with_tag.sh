@@ -4,27 +4,27 @@ tag="${1:-latest}"
 url="git@github.com:2DegreesInvesting/"
 
 clone_and_log () {
-for repo in ${clones}
-do
-    remote="${url}${repo}.git"
-    git clone -b master ${remote} --depth 1
-    echo "--"
-done
+    for repo in ${clones}
+    do
+        remote="${url}${repo}.git"
+        git clone -b master ${remote} --depth 1
+        echo "--"
+    done
 
-for repo in ${clones}
-do
-    echo "${repo} HEAD sha:"
-    git -C "${repo}" rev-parse HEAD
-    echo "--"
-done
+    for repo in ${clones}
+    do
+        echo "${repo} HEAD sha:"
+        git -C "${repo}" rev-parse HEAD
+        echo "--"
+    done
 
-for repo in ${clones}
-do
-    git -C "${repo}" tag -a "${tag}" -m "Release pacta ${tag}" HEAD
-    echo "${repo}"
-    echo "$(git -C ${repo} log --pretty='%h %d <%an> (%cr)' | head -n 1)"
-    echo "--"
-done
+    for repo in ${clones}
+    do
+        git -C "${repo}" tag -a "${tag}" -m "Release pacta ${tag}" HEAD
+        echo "${repo}"
+        echo "$(git -C ${repo} log --pretty='%h %d <%an> (%cr)' | head -n 1)"
+        echo "--"
+    done
 }
 
 clones="${2:-PACTA_analysis create_interactive_report StressTestingModelDev pacta-data}"
