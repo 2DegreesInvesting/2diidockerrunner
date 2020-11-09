@@ -1,54 +1,80 @@
 #! /bin/bash
 
-tag="${1:-latest}"
+# Examples:
+# build_with_tag 0.0.0.999
+
+repos="PACTA_analysis create_interactive_report StressTestingModelDev pacta-data"
+user_results="user_results"
 url="git@github.com:2DegreesInvesting/"
 
+tag="$1"
+if [ -z "$tag" ]
+then
+    echo "Please give a tag."
+    exit 0
+fi
+
+here="$(basename $(pwd))"
+if [ ! "$here" == "pacta" ]
+then
+    echo "Please run from 2diidockerrunner/pacta (not $(pwd))"
+    exit 0
+fi
+
 clone_and_log () {
-    for repo in ${clones}
+    for repo in $repos
     do
         remote="${url}${repo}.git"
-        git clone -b master ${remote} --depth 1
-        echo "--"
-    done
+        git clone -b master "$remote" --depth 1 || exit 0
+        echo
 
-    for repo in ${clones}
-    do
-        git -C "${repo}" tag -a "${tag}" -m "Release pacta ${tag}" HEAD
-        echo "${repo}"
-        echo "$(git -C ${repo} log --pretty='%h %d <%an> (%cr)' | head -n 1)"
-        echo "--"
+        if [ -n "$tag" ]
+        then
+            echo "Tagging as $tag"
+            git -C "$repo" tag -a "$tag" -m "Release pacta $tag" HEAD || exit 0
+            echo
+        fi
+
+        echo "$(git -C $repo log --pretty='%h %d <%an> (%cr)' | head -n 1)"
+        echo
     done
 }
 
-clones="${2:-PACTA_analysis create_interactive_report StressTestingModelDev pacta-data}"
 clone_and_log
 
 docker rmi --force $(docker images -q '2dii_pacta' | uniq)
-docker build --tag 2dii_pacta:"${tag}" --tag 2dii_pacta:latest .
+echo
 
-for repo in ${clones}
+docker build --tag 2dii_pacta:"$tag" --tag 2dii_pacta:latest .
+echo
+
+for repo in $clones
 do
-    rm -rf "${repo}"
+    rm -rf "$repo"
 done
 
 unzip pacta_web_template.zip
+echo
 
-clones="user_results"
+repos="$user_results"
+tag=""
 clone_and_log
 
 needless_files=".git .gitignore .DS_Store README.md user_results.Rproj"
-for file in ${needless_files}
+for file in $needless_files
 do
-  rm -rf user_results/"${file}"
+  rm -rf user_results/"$file"
 done
 
 cp -R user_results/ pacta_web/user_results/4/
 rm -rf user_results
 
 docker save 2dii_pacta | gzip > pacta_web/2dii_pacta.tar.gz
+echo
 
 zip -r pacta_web.zip pacta_web -x ".DS_Store" -x "__MACOSX"
 
 rm -rf pacta_web
 
+echo "Done"
 exit 0
