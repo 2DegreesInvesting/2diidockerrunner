@@ -64,7 +64,7 @@ echo
 docker build --tag 2dii_pacta:"$tag" --tag 2dii_pacta:latest .
 echo
 
-for repo in $clones
+for repo in $repos
 do
     rm -rf "$repo"
 done
