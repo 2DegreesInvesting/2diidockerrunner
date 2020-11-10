@@ -37,26 +37,23 @@ then
     exit 2
 fi
 
-clone_and_log () {
+clone_tag_and_log () {
     for repo in $repos
     do
         remote="${url}${repo}.git"
         git clone -b master "$remote" --depth 1 || exit 2
         echo
 
-        if [ -n "$tag" ]
-        then
-            echo "Tagging as $tag"
-            git -C "$repo" tag -a "$tag" -m "Release pacta $tag" HEAD || exit 2
-            echo
-        fi
+        echo "Tagging as $tag"
+        git -C "$repo" tag -a "$tag" -m "Release pacta $tag" HEAD || exit 2
+        echo
 
         echo "$(git -C $repo log --pretty='%h %d <%an> (%cr)' | head -n 1)"
         echo
     done
 }
 
-clone_and_log
+clone_tag_and_log
 
 docker rmi --force $(docker images -q '2dii_pacta' | uniq)
 echo
@@ -73,8 +70,7 @@ unzip pacta_web_template.zip
 echo
 
 repos="$user_results"
-tag=""
-clone_and_log
+clone_tag_and_log
 
 needless_files=".git .gitignore .DS_Store README.md user_results.Rproj"
 for file in $needless_files
