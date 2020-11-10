@@ -27,14 +27,14 @@ fi
 if [ -z "$tag" ]
 then
     echo "Please give a tag."
-    exit 0
+    exit 2
 fi
 
 here="$(basename $(pwd))"
 if [ ! "$here" == "pacta" ]
 then
     echo "Please run from 2diidockerrunner/pacta (not $(pwd))"
-    exit 0
+    exit 2
 fi
 
 clone_and_log () {
