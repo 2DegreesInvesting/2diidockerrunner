@@ -41,13 +41,13 @@ clone_and_log () {
     for repo in $repos
     do
         remote="${url}${repo}.git"
-        git clone -b master "$remote" --depth 1 || exit 0
+        git clone -b master "$remote" --depth 1 || exit 2
         echo
 
         if [ -n "$tag" ]
         then
             echo "Tagging as $tag"
-            git -C "$repo" tag -a "$tag" -m "Release pacta $tag" HEAD || exit 0
+            git -C "$repo" tag -a "$tag" -m "Release pacta $tag" HEAD || exit 2
             echo
         fi
 
