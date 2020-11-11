@@ -76,7 +76,7 @@ do
     rm -rf "$repo"
 done
 
-image_tar_gz="pacta_web/2dii_pacta.tar.gz"
+image_tar_gz="2dii_pacta.tar.gz"
 green "Saving 2dii_pacta into $image_tar_gz ..."
 docker save 2dii_pacta | gzip -q > "$image_tar_gz"
 echo
