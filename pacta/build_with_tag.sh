@@ -76,22 +76,7 @@ for repo in $repos
 do
     rm -rf "$repo"
 done
-
-web_template_zip="pacta_web_template.zip"
-green "Unzipping $web_template_zip ..."
-unzip -q "$web_template_zip"
 echo
-
-image_tar_gz="pacta_web/2dii_pacta.tar.gz"
-green "Saving 2dii_pacta into $image_tar_gz ..."
-docker save 2dii_pacta | gzip -q > "$image_tar_gz"
-echo
-
-web_zip="pacta_web.zip"
-green "Zipping $web_zip ..."
-zip -rq "$web_zip" pacta_web -x ".DS_Store" -x "__MACOSX"
-
-rm -rf pacta_web
 
 green "Done :-)"
 exit 0
