@@ -38,8 +38,7 @@ which will
   - make some necessary permissions changes
   - an export of the freshly made docker image gzipped (2dii_pacta.tar.gz)
 
-If the build is succesful, one should test it with the test scripts, and if
-the tests are successful, load the image interactively and push the tags
+If the build is succesful, load the image interactively and push the tags
 created for each of the PACTA_analysis and friends repos inside of the
 docker container.
 
