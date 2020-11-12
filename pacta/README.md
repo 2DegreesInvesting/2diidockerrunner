@@ -36,7 +36,7 @@ which will
   - use 2dii/r-packages as a base
   - copy in the freshly cloned repos
   - make some necessary permissions changes
-  - an export of the freshly made docker image gzipped (2dii_pacta.tar.gz)
+  - export the freshly made docker image gzipped (2dii_pacta.tar.gz)
 
 If the build is succesful, load the image interactively and push the tags
 created for each of the PACTA_analysis and friends repos inside of the
