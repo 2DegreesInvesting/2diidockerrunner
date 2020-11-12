@@ -34,7 +34,7 @@ The script will:
 - build a "2dii_pacta" docker image using the Dockerfile in this directory,
 which will
   - use 2dii/r-packages as a base
-  - copy in the frshly cloned repos
+  - copy in the freshly cloned repos
   - make some necessary permissions changes
   - an export of the freshly made docker image gzipped (2dii_pacta.tar.gz)
 
