@@ -29,10 +29,12 @@ previously existing tags in the PACTA_analysis and friends repos.
 ```
 
 The script will:
+
 - clone the repos locally, only copying the current version of the files
 - remove any existing "2dii_pacta" images from your local docker system
-- build a "2dii_pacta" docker image using the Dockerfile in this directory,
-which will
+- build a "2dii_pacta:<tag>" and "2dii_pacta:latest" docker image (where <tag>
+is the tag you provided, e.g. 0.0.4). The image builds from the Dockerfile
+in this directory, which will
   - use 2dii/r-packages as a base
   - copy in the freshly cloned repos
   - make some necessary permissions changes
