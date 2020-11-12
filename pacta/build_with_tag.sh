@@ -38,13 +38,6 @@ then
     exit 2
 fi
 
-here="$(basename $(pwd))"
-if [ ! "$here" == "pacta" ]
-then
-    red "Please run from 2diidockerrunner/pacta (not $(pwd))."
-    exit 2
-fi
-
 for repo in $repos
 do
     # Clone
