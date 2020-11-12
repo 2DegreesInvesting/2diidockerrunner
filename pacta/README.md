@@ -15,7 +15,7 @@ The tree of the docker container looks like this:
 # Usage
 
 Note that PACTA_analysis and friends are not mounted but copied into the
-conainer, so they will be frozen in the state they are when you build
+container, so they will be frozen in the state they are when you build
 the image.
 
 # Usage
@@ -40,7 +40,7 @@ in this directory, which will
   - make some necessary permissions changes
   - export the freshly made docker image gzipped (2dii_pacta.tar.gz)
 
-If the build is succesful, load the image interactively and push the tags
+If the build is successful, load the image interactively and push the tags
 created for each of the PACTA_analysis and friends repos inside of the
 docker container.
 
@@ -69,4 +69,4 @@ where you set `working_dir` to the path to the directory that contains the
 user specific portfolio info on the server, and you set `user_results` to
 the path to the directory that contains the survey (and other) results that
 are relevant to the specific user on the server. Those directories will then
-be mounted inside of the docker containter in the appropriate locations.
+be mounted inside of the docker container in the appropriate locations.
