@@ -61,7 +61,8 @@ done
 docker rmi --force $(docker images -q '2dii_pacta' | uniq)
 echo
 
-docker build --tag 2dii_pacta:"$tag" --tag 2dii_pacta:latest .
+parent="$(dirname $(which $0))"
+docker build --tag 2dii_pacta:"$tag" --tag 2dii_pacta:latest "$parent"
 echo
 
 for repo in $repos
@@ -69,7 +70,6 @@ do
     rm -rf "$repo"
 done
 
-parent="$(dirname $(which $0))"
 image_tar_gz="${parent}/2dii_pacta.tar.gz"
 green "Saving 2dii_pacta into $image_tar_gz ..."
 docker save 2dii_pacta | gzip -q > "$image_tar_gz"
