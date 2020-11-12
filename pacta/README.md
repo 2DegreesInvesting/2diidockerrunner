@@ -20,7 +20,7 @@ the image.
 
 # Usage
 
-Run the build_with_tag.sh script from anywhere, specifying a tag to assign
+Run the build_with_tag.sh script, specifying a tag to assign
 to it. Ideally the tag should use semantic versioning, and should follow
 previously existing tags in the PACTA_analysis and friends repos.
 
